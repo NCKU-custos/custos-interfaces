@@ -1,0 +1,36 @@
+name: build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  build-tier1:
+    name: build (Ubuntu 26.04, Lyrical Tier 1)
+    uses: NCKU-custos/custos-infra/.github/workflows/ros2-build.yml@main
+    with:
+      ros_distro: lyrical
+      ubuntu_version: "26.04"
+
+  build-tier3:
+    name: build (Ubuntu 24.04, Lyrical Tier 3 fallback)
+    uses: NCKU-custos/custos-infra/.github/workflows/ros2-build.yml@main
+    with:
+      ros_distro: lyrical
+      ubuntu_version: "24.04"
+    continue-on-error: true
+
+  lint:
+    uses: NCKU-custos/custos-infra/.github/workflows/lint.yml@main
+
+  consumers:
+    name: pre-merge consumer build
+    if: github.event_name == 'pull_request'
+    needs: build-tier1
+    uses: NCKU-custos/custos-infra/.github/workflows/interfaces-consumers.yml@main
+    with:
+      interfaces_ref: ${{ github.event.pull_request.head.sha }}
+    secrets:
+      CUSTOS_CI_APP_ID: ${{ secrets.CUSTOS_CI_APP_ID }}
+      CUSTOS_CI_PRIVATE_KEY: ${{ secrets.CUSTOS_CI_PRIVATE_KEY }}

@@ -1,0 +1,6 @@
+{
+  "custos_common_msgs": "0.1.0",
+  "custos_perception_msgs": "0.1.0",
+  "custos_control_msgs": "0.1.0",
+  "custos_navigation_msgs": "0.1.0"
+}

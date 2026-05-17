@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "release-type": "simple",
+  "include-component-in-tag": true,
+  "separate-pull-requests": false,
+  "bump-minor-pre-major": true,
+  "bump-patch-for-minor-pre-major": true,
+  "packages": {
+    "custos_common_msgs": {
+      "component": "custos_common_msgs",
+      "package-name": "custos_common_msgs",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "custos_perception_msgs": {
+      "component": "custos_perception_msgs",
+      "package-name": "custos_perception_msgs",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "custos_control_msgs": {
+      "component": "custos_control_msgs",
+      "package-name": "custos_control_msgs",
+      "changelog-path": "CHANGELOG.md"
+    },
+    "custos_navigation_msgs": {
+      "component": "custos_navigation_msgs",
+      "package-name": "custos_navigation_msgs",
+      "changelog-path": "CHANGELOG.md"
+    }
+  },
+  "plugins": [
+    {
+      "type": "linked-versions",
+      "groupName": "custos-interfaces",
+      "components": [
+        "custos_common_msgs",
+        "custos_perception_msgs",
+        "custos_control_msgs",
+        "custos_navigation_msgs"
+      ]
+    }
+  ]
+}

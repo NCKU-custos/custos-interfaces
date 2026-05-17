@@ -1,0 +1,8 @@
+# custos-interfaces owners
+# Each msg package is owned by the team that depends on it most.
+# Core team approves anything cross-cutting and every major version bump.
+*                            @custos/core
+custos_common_msgs/          @custos/core
+custos_perception_msgs/      @custos/perception @custos/core
+custos_control_msgs/         @custos/flight @custos/core
+custos_navigation_msgs/      @custos/flight @custos/core
