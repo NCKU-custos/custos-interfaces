@@ -13,13 +13,11 @@ jobs:
       ros_distro: lyrical
       ubuntu_version: "26.04"
 
-  build-tier3:
-    name: build (Ubuntu 24.04, Lyrical Tier 3 fallback)
-    uses: NCKU-custos/custos-infra/.github/workflows/ros2-build.yml@main
-    with:
-      ros_distro: lyrical
-      ubuntu_version: "24.04"
-    continue-on-error: true
+  # Tier 3 (Ubuntu 24.04 fallback) deferred per ADR 0011 open-follow-up #8:
+  # it needs a sibling ros-base:lyrical-24.04 image (not built yet), and
+  # continue-on-error is not permitted on a reusable-workflow caller job, so a
+  # non-blocking matrix entry can't be expressed here. Re-add when Tier 3 is
+  # un-deferred and the 24.04 base image exists.
 
   lint:
     uses: NCKU-custos/custos-infra/.github/workflows/lint.yml@main
